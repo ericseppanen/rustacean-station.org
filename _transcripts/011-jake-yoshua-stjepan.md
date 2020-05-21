@@ -1,4 +1,7 @@
-
+---
+title: "RustFest Interviews Triple Feature: Rust for AAA Game Development; Async Foundations with `async-std`; and Powerful Concurrency Primitives with `crossbeam`"
+file: https://audio.rustacean-station.org/file/rustacean-station/rustacean-station-e011-rustfest-jake-yoshua-stjepan.mp3
+---
 
 __Ben Striegel__: Welcome to the Rustacean Station podcast. I'm here live at RustFest. I will continue to misuse the word "live" until someone stops me. I am here with Jake. I didn't get the last name, Jake.
 
@@ -18,7 +21,7 @@ Jake: Need for speed.
 
 Ben: Visually, very impressive.
 
-Jake: Yeah, it's been known throughout the industry for its high graphical fidelity, which is annoying because a lot of people call it a graphics engine, which it does way more than that, but yeah, so basically, I've been working with Rust.  There is some Rust code in Frostbite. I don't know how many people know that, still, that work there. But there's a bit of it, and-- yeah, I just was drawn to the language for you know, the typical reasons of safety and all the stuff that I like from C++, but don't like about it.
+Jake: Yeah, it's been known throughout the industry for its high graphical fidelity, which is annoying because a lot of people call it a graphics engine, which it does way more than that, but yeah, so basically, I've been working with Rust. There is some Rust code in Frostbite. I don't know how many people know that, still, that work there. But there's a bit of it, and-- yeah, I just was drawn to the language for you know, the typical reasons of safety and all the stuff that I like from C++, but don't like about it.
 
 Ben: Choosing your words carefully there.
 
@@ -36,7 +39,7 @@ Ben: I don't want to press you for too many details just yet. It seems like they
 
 Jake: Yeah, we're still very, very early.
 
-Ben: I wanted to get your impressions on Rust as a language.  You mentioned you like the safety aspect of it. I know that what I've heard in the past especially like when Rust was very young, was that like game developers, especially they care more about iteration speed than about memory safety. What's your opinion on that?
+Ben: I wanted to get your impressions on Rust as a language. You mentioned you like the safety aspect of it. I know that what I've heard in the past especially like when Rust was very young, was that like game developers, especially they care more about iteration speed than about memory safety. What's your opinion on that?
 
 Jake: Yeah, So, I mean, Iteration speed is definitely very important. And, like, there are a lot of good things that you get out of faster iteration because you can try out more ideas, and all that kinda stuff. But at the same time, like when you're shipping a game, typically, the thing that you're doing at the end is, you know, optimizing performance, but also tracking down that one bug that you've had for like, two years, that has never been like such a big problem that you need to fix it but is now shipping out to, you know, hopefully millions of people, and you do need to fix it. And like, you know, data races. And that's just getting worse over time because, you know, previously you would maybe have, like, two threads on the CPU to actually do anything. So it wasn't like, a huge issue to have data races and stuff because they weren't-- they weren't very frequent. But now that, you know, you have to have more and more threads, actually, be able to do anything, at least on the CPU, is, like, means that you're gonna have more and more problems that come with that. So Rust, kind of eliminating whole classes of bugs, like, just means you can spend more time on the things that actually matter. And to me, like, the trade off is definitely worth it. Like I, in my opinion, like the differences between C++ and Rust compile times for, like, equivalent code (???) like, that's really hard to define, which is why you can't really do a one-to-one comparison. But it's like, to me that, they're not really that wildly different. So, yeah, I'll definitely take a similar compile time for way fewer debugging hours in the future.
 
@@ -70,7 +73,7 @@ Jake: We'll say that. Let's see. What's out favorite crate? Like, I mean, like, 
 
 Ben: Any that are specific to game design, or people haven't heard of?
 
-Jake: Anything specific?  Like, right now, not really. I don't think-- I can't think of any off the top of my head.
+Jake: Anything specific? Like, right now, not really. I don't think-- I can't think of any off the top of my head.
 
 Ben: Which crates were you forking to add in this kind of bump allocator support?
 
@@ -83,7 +86,7 @@ Jake: We haven't-- well, we didn't fork any crates for that yet, but like that k
 
 Ben: What does a game engine want to use a gRPC or http for?
 
-Jake: So we're not really doing, like, a game engine in the traditional sense, like Unreal or Unity or anything like that.  It's more of a toolkit for other people to make games. So yeah, we're going to-- it's not going to be the same kind of constraints that a game engine has. And then also, like, we'll be pulling in, like, services in the cloud and things like that. So there's gonna be a lot of interaction between different opponents and stuff. And then, like, one thing like we're really interested in is wasm, that's actually like one of the top three reasons to use Rust right now for games and specifically is because wasm is like-- and Rust are just like a really great fit right now, Like Rust is easily the best language for doing wasm, because not only is it compiled to wasm, but like all of the-- most of the great wasm runtimes like Wasmer, Wasmtime, are all written in Rust. So, like, there's a really nice ecosystem around that right know, that we're really interested in.
+Jake: So we're not really doing, like, a game engine in the traditional sense, like Unreal or Unity or anything like that. It's more of a toolkit for other people to make games. So yeah, we're going to-- it's not going to be the same kind of constraints that a game engine has. And then also, like, we'll be pulling in, like, services in the cloud and things like that. So there's gonna be a lot of interaction between different opponents and stuff. And then, like, one thing like we're really interested in is wasm, that's actually like one of the top three reasons to use Rust right now for games and specifically is because wasm is like-- and Rust are just like a really great fit right now, Like Rust is easily the best language for doing wasm, because not only is it compiled to wasm, but like all of the-- most of the great wasm runtimes like Wasmer, Wasmtime, are all written in Rust. So, like, there's a really nice ecosystem around that right know, that we're really interested in.
 
 Ben: Great. Are there any wasm crates that you can talk about that you like a lot?
 
@@ -125,7 +128,7 @@ Ben: Welcome to Rustacean Station. I'm Ben Striegel here, live at RustFest. No o
 
 Yoshua Wuyts: Yeah.
 
-Ben: Did I get that correct?  Why don't you say it yourself so that everyone knows.
+Ben: Did I get that correct? Why don't you say it yourself so that everyone knows.
 
 Yoshua: Yoshua Wuyts.
 
@@ -165,7 +168,7 @@ Ben: Surprise me.
 
 Yoshua: Well, `Option` implements `Iterator`, right? And we have an asynchronous version of `Iterator` called `Stream`. So in a perfect world, or-- well, it does implement-- yeah, so implement-- it implements `IntoIterator`, so it can convert an `Option` into an `Iterator`, which is nice when you're combining things. We may someday want to implement `IntoStream` for it; have its own, like, dedicated stream type, so we might explore `Option` at some point.
 
-Ben: That's a good point. So in terms of-- I can pinpoint, kind of-- I'm still working on the async ecosystem. Because I was, kind of, trying not to look at it until it was stable. And it's kind of getting there, and so maybe now I'm-- just want to learn about it, which I figure plenty of folks are in the the same boat. And so I can think of a few things where it's like, `Stream` seems like a pretty fundamental piece. Would that be, kind of, like, would that go next to `futures`, say, in the `futures` standard library?  Like someday, I guess let me back up. Do you feel like there are things from `async-std` that should go in to actual `std`? Like, they actually belong there.
+Ben: That's a good point. So in terms of-- I can pinpoint, kind of-- I'm still working on the async ecosystem. Because I was, kind of, trying not to look at it until it was stable. And it's kind of getting there, and so maybe now I'm-- just want to learn about it, which I figure plenty of folks are in the the same boat. And so I can think of a few things where it's like, `Stream` seems like a pretty fundamental piece. Would that be, kind of, like, would that go next to `futures`, say, in the `futures` standard library? Like someday, I guess let me back up. Do you feel like there are things from `async-std` that should go in to actual `std`? Like, they actually belong there.
 
 Yoshua: That's a very interesting question. So I think the things that are closest to being merged into `std` are part of what is called the `futures-core` library.
 
@@ -177,7 +180,7 @@ Ben: `Stream`. Okay.
 
 Yoshua: So I think that would indeed be something--
 
-Ben: I'm not sure how, like, in-tune you are with Rust development, with the library team and the kind of thing. But do you feel like, in the next year or so, `Stream` might be accepted?  Or you're not quite that optimistic or you don't want to say?
+Ben: I'm not sure how, like, in-tune you are with Rust development, with the library team and the kind of thing. But do you feel like, in the next year or so, `Stream` might be accepted? Or you're not quite that optimistic or you don't want to say?
 
 Yoshua: So it's hard for me to, like, gauge whether or not something will happen. There's often times independent RFC, and people have opinions--
 
@@ -253,7 +256,7 @@ Ben: But I haven't heard much about async closures. It sounds like it would have
 
 Yoshua: So it used to be. Actually it used to be part of the same feature flag, the async-await feature flag. And then it was decided that it wasn't ready to stabilize yet, because of-- it just wasn't. And so it's been moved to its own feature flag, called `async_closure`. And, it's a separate feature. Sort of, the idea there is, imagine you have an iterator, and you would like to call `filter` on it, but an asynchronous filter so you don't consume the item, you get a borrow into the item, and then you say, well, should this be continued? Yes or no? So you return a bool. That, in asynchronous form, you can't give the borrowed item into an async filter, just doesn't work today. So async-- and there's a few more, like an async version of map. I'm doing a shitty job of explaining there, but there's a lot of patterns that we're still waiting on. They're just not there.
 
-Ben: I'm supposed to ask one more, kind of like, nitty gritty question in this area. I know there is, like, there's the `Fn` trait. There's the `FnOnce` trait, and the `FnMut` trait.  Would that involve a new, like, `FnAsync` trait or something?
+Ben: I'm supposed to ask one more, kind of like, nitty gritty question in this area. I know there is, like, there's the `Fn` trait. There's the `FnOnce` trait, and the `FnMut` trait. Would that involve a new, like, `FnAsync` trait or something?
 
 Yoshua: I haven't talked to the lang team about this. And so this is not me having inside information, this is just really, like, being like, I think the answer is yes to all three of them. We'd have async versions of all three.
 
@@ -291,7 +294,7 @@ Yoshua: Yes.
 
 Ben: Okay. Interesting. Okay, that seems to make sense.
 
-What's the next step for  `async-std` now that futures, or async/await is stabilized, and you have a release, I think next Monday, you said?
+What's the next step for `async-std` now that futures, or async/await is stabilized, and you have a release, I think next Monday, you said?
 
 Yoshua: Yeah, tomorrow.
 
@@ -329,7 +332,7 @@ Ben: You want to examples, you want little "hello world"--
 
 Yoshua: (crosstalk ???), error types, all the--
 
-Ben: Fantastic.  Good to hear. It's very important for usability, especially in Rust. We value that a lot. That's also-- I had a different question. Oh, I'm-- so today, again, at Florian's talk, he mentioned that because of language changes in the future, there is probably going to be a `async-std` 2.0, someday.
+Ben: Fantastic. Good to hear. It's very important for usability, especially in Rust. We value that a lot. That's also-- I had a different question. Oh, I'm-- so today, again, at Florian's talk, he mentioned that because of language changes in the future, there is probably going to be a `async-std` 2.0, someday.
 
 Yoshua: Yes.
 
@@ -367,7 +370,7 @@ Yoshua: And we have lots of benchmarks and pretty hefty, like, testing going on.
 
 Ben: Excellent. All right. Is there anything else you want to, like, talk about in terms of, like, if somebody wanted to get involved, what are the best websites or chat channels to get in touch with you on?
 
-Yoshua: Our website is async.rs, which I'm pretty happy with that.  Yeah, um, if you're interested, you can, like, check it out there. Otherwise, we're on Discord. There's, like, links to Discord from the GitHub. I think maybe even on the website there's, like, people online, If you have any questions. You can also hit us up on Twitter. My twitter's, well-- I can't spell that, so whatever, but we're on async-rs on Twitter. Just, yeah, ask around.
+Yoshua: Our website is async.rs, which I'm pretty happy with that. Yeah, um, if you're interested, you can, like, check it out there. Otherwise, we're on Discord. There's, like, links to Discord from the GitHub. I think maybe even on the website there's, like, people online, If you have any questions. You can also hit us up on Twitter. My twitter's, well-- I can't spell that, so whatever, but we're on async-rs on Twitter. Just, yeah, ask around.
 
 Ben: All right. Thanks a lot. Anything else you want to say?
 
