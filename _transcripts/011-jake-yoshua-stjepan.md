@@ -65,7 +65,7 @@ __Jake__: What are our favorite crates?
 
 __Ben__: Open source, public crates.
 
-__Jake__: Yeah, well, I have our least favorite crate is probably openssl.
+__Jake__: Yeah, well, I have our least favorite crate is probably `openssl`.
 
 __Ben__: OK.
 
@@ -76,11 +76,6 @@ __Ben__: Any that are specific to game design, or people haven't heard of?
 __Jake__: Anything specific? Like, right now, not really. I don't think-- I can't think of any off the top of my head.
 
 __Ben__: Which crates were you forking to add in this kind of bump allocator support?
-
-
-CONTINUE... ~ 10:26
-
-
 
 __Jake__: We haven't-- well, we didn't fork any crates for that yet, but like that kind of stuff, we will be adding more into, and all that kind of things, but most of the stuff that we've open sourced so far have been tools that we've developed and then, also, like, a lot of pull requests to, like, bump versions and make things easier to use, and things like that. But, you know-- what is our favorite? Yeah, I don't know. We're doing a lot of, like, current stuff, like `http` (???) and `serde` and things like that, so yeah, we're using, like, `reqwest` (??? ambiguous?), because it's pretty nice. Oh, yeah, we're also using `tonic`, the gRPC thing. That's still in Alfa, I think, but is going to be hopefully released officially pretty soon.
 
