@@ -301,10 +301,11 @@ __Yoshua__: Yes.
 __Ben__: And I wanted to— it's a big topic right now, async stuff, and so for
 me, I know I had a talk from Florian today at RustFest kind of going over what
 `async-std` is and does. But still, I want to talk more about the broader, like,
-high-level stuff where, for example, if I am just (_unintelligible— 16:06_) and it seemed
-almost like they don't— wanted you to never have to import `std` at all. So does
-`async-std`, for example, export things like `Option`, which, you wouldn't ever
-think would need to care about futures— which, I hope not. Does it?
+high-level stuff where, for example, if I am just (_unintelligible— 16:06_) and
+it seemed almost like they don't— wanted you to never have to import `std` at
+all. So does `async-std`, for example, export things like `Option`, which, you
+wouldn't ever think would need to care about futures— which, I hope not. Does
+it?
 
 __Yoshua__: Well, you'd be surprised.
 
@@ -431,17 +432,17 @@ go into `futures-core` library, and then move from there. But, you know, I'm
 optimistic that we might get there.
 
 __Ben__: It's good to have upgrade paths, where it's like, you know, you can do
-experiments with— (_unintelligible— 21:30_), some time, with some kind of thing, and then
-gradually it becomes more and more— like goes from de-facto stable to de-jure
-stable, which is a pretty decent way of doing things, I think.
+experiments with— (_unintelligible— 21:30_), some time, with some kind of thing,
+and then gradually it becomes more and more— like goes from de-facto stable to
+de-jure stable, which is a pretty decent way of doing things, I think.
 
 __Yoshua__: We're seeing a really fun one there, recently, where we looked at
-(_unintelligible— 21:42_), I guess someone pointed out to us that in the RFC for async/await
-there was a mention of the `IntoFuture` trait that would be accepted and we were
-like, oh, that's nice. Cool. Let's add it to `async-std`. Right? And then
-someone from `tokio` project, or— I wrote a blog post about it, and someone from
-`tokio` project saw it, and was like, yeah, that's indeed really nice, and they
-put in the work to put it into, not just `futures-core`, but they just went
+(_unintelligible— 21:42_), I guess someone pointed out to us that in the RFC for
+async/await there was a mention of the `IntoFuture` trait that would be accepted
+and we were like, oh, that's nice. Cool. Let's add it to `async-std`. Right? And
+then someone from `tokio` project, or— I wrote a blog post about it, and someone
+from `tokio` project saw it, and was like, yeah, that's indeed really nice, and
+they put in the work to put it into, not just `futures-core`, but they just went
 straight to compiler and were like, hey, here's the thing, and here's a patch,
 and now it's, I think, either being merged or already merged.
 
@@ -453,8 +454,8 @@ __Ben__: And I guess, kind of the broader theme here is, now that, you know,
 async/await is stable, it's kind of— maybe back up again. Back when, like, the
 future trait was stabilized earlier this year, in summertime, people are like,
 now we can finally use futures on Rust. Well, not really. You still gotta wait
-for a while, and now it's kind of like, oh, async/await is here. (_unintelligible— 22:32_)
-Can I use it now? Well, it depends on what you're—...
+for a while, and now it's kind of like, oh, async/await is here.
+(_unintelligible— 22:32_) Can I use it now? Well, it depends on what you're—...
 
 It seems like, when do you feel, like, the state of Rust itself, and all the
 foundational library is gonna be such that people can just, without having to,
@@ -676,7 +677,8 @@ things are— people are upgrading, its a little murky and then, we're upgraded
 and we continue on.
 
 __Ben__: Do you know of anyone, kind of, using `async-std` in a big capacity to
-test, like— (_unintelligible— 32:12_), to pummel it for a while, run it through its paces?
+test, like— (_unintelligible— 32:12_), to pummel it for a while, run it through
+its paces?
 
 __Yoshua__: Well, we've been doing that ourselves, internally, trying to be
 like, how do we stack up, right?
@@ -1024,12 +1026,11 @@ said that you working on performance, very heavily. Do you want to talk about
 that?
 
 __Stjepan__: So in `crossbeam`, we have our own channels which are based on
-`crossbeam` channels, in particular the bounded version of channels
-in `crossbeam`. So the performance advantage of `crossbeam` channels are in
-that, context switches on asynchronous tasks are much lower overhead than
-context switches with threads. So if you're sending a lot of data between
-different tasks, we can context switch between them much faster than with
-threads.
+`crossbeam` channels, in particular the bounded version of channels in
+`crossbeam`. So the performance advantage of `crossbeam` channels are in that,
+context switches on asynchronous tasks are much lower overhead than context
+switches with threads. So if you're sending a lot of data between different
+tasks, we can context switch between them much faster than with threads.
 
 __Ben__: Excellent. And those are still MPMC?
 
